@@ -117,6 +117,72 @@ class Joystick
 		else _timeout = 0;
 		return value;
 	}
+	
+	/**
+	 * Gets angle of right analogue stick
+	 * @return right analogue stick angle in radians
+	 */
+	public var rightStickAngle(get, never):Float;
+	public function get_rightStickAngle():Float
+	{
+		return Math.atan2(getAxis(XBOX_GAMEPAD.RIGHT_ANALOGUE_X), getAxis(XBOX_GAMEPAD.RIGHT_ANALOGUE_Y));
+	}
+
+	/**
+	 * Gets angle of left analogue stick
+	 * @return left analogue stick angle in radians
+	 */
+	public var leftStickAngle(get, never):Float;
+	public function get_leftStickAngle():Float
+	{
+		return Math.atan2(getAxis(XBOX_GAMEPAD.LEFT_ANALOGUE_X), getAxis(XBOX_GAMEPAD.LEFT_ANALOGUE_Y));
+	}
+	
+	/**
+	 * Gets distance of right analogue stick
+	 * @return right analogue stick distance, between 0 and 1
+	 */
+	public var rightStickDistance(get, never):Float;
+	public function get_rightStickDistance():Float
+	{
+		if (getAxis(XBOX_GAMEPAD.RIGHT_ANALOGUE_X) < deadZone && getAxis(XBOX_GAMEPAD.RIGHT_ANALOGUE_Y) > deadZone)
+			return 0;
+		return Math.sqrt( Math.pow(getAxis(XBOX_GAMEPAD.RIGHT_ANALOGUE_X), 2) + Math.pow(getAxis(XBOX_GAMEPAD.RIGHT_ANALOGUE_X), 2) );
+	}
+	
+	/**
+	 * Gets distance of left analogue stick
+	 * @return left analogue stick distance, between 0 and 1
+	 */
+	public var leftStickDistance(get, never):Float;
+	public function get_leftStickDistance():Float
+	{
+		if (getAxis(XBOX_GAMEPAD.LEFT_ANALOGUE_X) < deadZone && getAxis(XBOX_GAMEPAD.LEFT_ANALOGUE_X) > deadZone)
+			return 0;
+		return Math.sqrt( Math.pow(getAxis(XBOX_GAMEPAD.LEFT_ANALOGUE_X), 2) + Math.pow(getAxis(XBOX_GAMEPAD.LEFT_ANALOGUE_X), 2) );
+	}
+	
+	//----------------------------------| TRIGGERS |----------------------------------//
+	
+	/**
+	 * Gets distance of right trigger
+	 * @return right trigger distance, between 0 and 1
+	 */
+	public var rightTriggerDistance(get, never):Float;
+	public function get_rightTriggerDistance():Float
+	{
+		return Math.abs(Math.min(0, getAxis(XBOX_GAMEPAD.TRIGGER)));
+	}
+	
+	/**
+	 * Gets distance of right trigger
+	 * @return right trigger distance, between 0 and 1
+	 */
+	public var leftTriggerDistance(get, never):Float;
+	public function get_leftTriggerDistance():Float
+	{
+		return Math.max(0, getAxis(XBOX_GAMEPAD.TRIGGER));
+	}
 
 	private var _timeout:Float;
 
