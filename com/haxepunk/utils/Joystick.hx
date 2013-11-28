@@ -145,9 +145,7 @@ class Joystick
 	public var rightStickDistance(get, never):Float;
 	public function get_rightStickDistance():Float
 	{
-		if (getAxis(XBOX_GAMEPAD.RIGHT_ANALOGUE_X) < deadZone && getAxis(XBOX_GAMEPAD.RIGHT_ANALOGUE_Y) > deadZone)
-			return 0;
-		return Math.sqrt( Math.pow(getAxis(XBOX_GAMEPAD.RIGHT_ANALOGUE_X), 2) + Math.pow(getAxis(XBOX_GAMEPAD.RIGHT_ANALOGUE_X), 2) );
+		return Math.sqrt( Math.pow(getAxis(XBOX_GAMEPAD.RIGHT_ANALOGUE_X), 2) + Math.pow(getAxis(XBOX_GAMEPAD.RIGHT_ANALOGUE_Y), 2) );
 	}
 	
 	/**
@@ -157,9 +155,7 @@ class Joystick
 	public var leftStickDistance(get, never):Float;
 	public function get_leftStickDistance():Float
 	{
-		if (getAxis(XBOX_GAMEPAD.LEFT_ANALOGUE_X) < deadZone && getAxis(XBOX_GAMEPAD.LEFT_ANALOGUE_X) > deadZone)
-			return 0;
-		return Math.sqrt( Math.pow(getAxis(XBOX_GAMEPAD.LEFT_ANALOGUE_X), 2) + Math.pow(getAxis(XBOX_GAMEPAD.LEFT_ANALOGUE_X), 2) );
+		return Math.sqrt( Math.pow(getAxis(XBOX_GAMEPAD.LEFT_ANALOGUE_X), 2) + Math.pow(getAxis(XBOX_GAMEPAD.LEFT_ANALOGUE_Y), 2) );
 	}
 	
 	//----------------------------------| TRIGGERS |----------------------------------//
